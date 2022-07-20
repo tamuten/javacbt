@@ -1,0 +1,84 @@
+INSERT INTO thought
+(
+  id,
+  thought_datetime,
+  situation,
+  feeling,
+  percent,
+  automatic_thinking,
+  base,
+  objection,
+  new_thinking,
+  new_feeling,
+  new_percent
+)
+VALUES
+(
+  1,
+  '2022-07-13',
+  'サンプル１',
+  '不安',
+  70,
+  'ここに自動思考が入ります。',
+  'ここに根拠が入ります。',
+  'ここに反証が入ります。',
+  'ここに適応的思考が入ります。',
+  '不安',
+  40
+);
+INSERT INTO thought
+(
+  id,
+  thought_datetime,
+  situation,
+  feeling,
+  percent,
+  automatic_thinking,
+  base,
+  objection,
+  new_thinking,
+  new_feeling,
+  new_percent
+)
+VALUES
+(
+  2,
+  '2022-07-14',
+  'サンプル2',
+  'うつ',
+  70,
+  '浮かんできたイメージや考えを記入します。',
+  '自動思考の元となっている事実を記入します。',
+  '自動思考が間違っていることを示す事実を記入します。',
+  'ここまで書いて出てきた現実的な考えを記入します。',
+  'うつ',
+  40
+);
+INSERT INTO thought
+(
+  id,
+  thought_datetime,
+  situation,
+  feeling,
+  percent,
+  automatic_thinking,
+  base,
+  objection,
+  new_thinking,
+  new_feeling,
+  new_percent
+)
+VALUES
+(
+  3,
+  '2022-07-15',
+  'サンプル3',
+  '怒り',
+  70,
+  'できるだけ・頭にブレーキをかけずに書きだします。',
+  '自分の考えではなく、事実のみを記入します。',
+  '友達にアドバイスするならどう言うか、極端な思い込みがないかチェックします。',
+  '自動思考・根拠・反証を踏まえた客観的な意見を記入します。',
+  '怒り',
+  40
+);

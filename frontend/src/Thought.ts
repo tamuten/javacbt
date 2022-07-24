@@ -1,6 +1,6 @@
 export interface Thought {
   id?: number;
-  thoughtDateTIme?: Date;
+  thoughtDateTime?: Date;
   situation: string;
   feeling: string;
   percent?: number;

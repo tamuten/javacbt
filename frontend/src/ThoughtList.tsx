@@ -1,20 +1,21 @@
 import { useState, useLayoutEffect } from "react";
 import { Thought } from "./Thought";
+import { formatDateTimeHyphen } from "./formatDateTimeHyphen";
 
 export const ThoughtList = () => {
   const [thoughts, setThoughts] = useState<Thought[]>();
 
   const getList = async () => {
-    const msg = await fetch("/api/index").then(
+    const json = await fetch("/api/index").then(
       (response) => response.text(),
       (reason) => {
         console.error(reason);
       }
     );
 
-    if (msg) {
-      const obj = JSON.parse(msg);
-      
+    if (json) {
+      const obj: Thought[] = JSON.parse(json);
+
       setThoughts(obj);
     }
   };
@@ -47,7 +48,7 @@ export const ThoughtList = () => {
               <tr key={index}>
                 <td>{t.id}</td>
                 <td>
-                  {t.thoughtDateTIme ? t.thoughtDateTIme.toString() : ""}
+                  {t.thoughtDateTime ? formatDateTimeHyphen(new Date(t.thoughtDateTime)) : ""}
                 </td>
                 <td>{t.situation}</td>
                 <td>{t.feeling}</td>

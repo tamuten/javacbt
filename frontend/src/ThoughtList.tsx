@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 import { Thought } from "./Thought";
 import { formatDateTimeHyphen } from "./formatDateTimeHyphen";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 
 export const ThoughtList = () => {
   const [thoughts, setThoughts] = useState<Thought[]>();
@@ -27,42 +28,43 @@ export const ThoughtList = () => {
   return (
     <>
       {thoughts ? (
-        <table>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>日時</th>
-              <th>状況</th>
-              <th>気分</th>
-              <th></th>
-              <th>自動思考</th>
-              <th>根拠</th>
-              <th>反証</th>
-              <th>適応的思考</th>
-              <th>今の気分</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {thoughts.map((t, index) => (
-              <tr key={index}>
-                <td>{t.id}</td>
-                <td>
-                  {t.thoughtDateTime ? formatDateTimeHyphen(new Date(t.thoughtDateTime)) : ""}
-                </td>
-                <td>{t.situation}</td>
-                <td>{t.feeling}</td>
-                <td>{t.percent}</td>
-                <td>{t.automaticThinking}</td>
-                <td>{t.base}</td>
-                <td>{t.objection}</td>
-                <td>{t.newThinking}</td>
-                <td>{t.newFeeling}</td>
-                <td>{t.newPercent}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>id</TableCell>
+                <TableCell>日時</TableCell>
+                <TableCell>状況</TableCell>
+                <TableCell>気分</TableCell>
+                <TableCell></TableCell>
+                <TableCell>自動思考</TableCell>
+                <TableCell>根拠</TableCell>
+                <TableCell>反証</TableCell>
+                <TableCell>適応的思考</TableCell>
+                <TableCell>今の気分</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {thoughts.map((t, index) => (
+                <TableRow key={index}>
+                  <TableCell>{t.id}</TableCell>
+                  <TableCell>{t.thoughtDateTime ? formatDateTimeHyphen(new Date(t.thoughtDateTime)) : ""}</TableCell>
+                  <TableCell>{t.situation}</TableCell>
+                  <TableCell>{t.feeling}</TableCell>
+                  <TableCell>{t.percent}</TableCell>
+                  <TableCell>{t.automaticThinking}</TableCell>
+                  <TableCell>{t.base}</TableCell>
+                  <TableCell>{t.objection}</TableCell>
+                  <TableCell>{t.newThinking}</TableCell>
+                  <TableCell>{t.newFeeling}</TableCell>
+                  <TableCell>{t.newPercent}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+
       ) : (
         ""
       )}

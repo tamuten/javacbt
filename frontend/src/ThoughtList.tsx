@@ -1,7 +1,15 @@
 import { useState, useLayoutEffect } from "react";
 import { Thought } from "./Thought";
 import { formatDateTimeHyphen } from "./formatDateTimeHyphen";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@material-ui/core";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 
 export const ThoughtList = () => {
   const [thoughts, setThoughts] = useState<Thought[]>();
@@ -27,7 +35,9 @@ export const ThoughtList = () => {
 
   return (
     <>
-      <Typography variant="h3" gutterBottom>Thought List</Typography>
+      <Typography variant="h3" gutterBottom>
+        Thought List
+      </Typography>
       {thoughts ? (
         <>
           <TableContainer>
@@ -51,7 +61,11 @@ export const ThoughtList = () => {
                 {thoughts.map((t, index) => (
                   <TableRow key={index} hover>
                     <TableCell>{t.id}</TableCell>
-                    <TableCell>{t.thoughtDateTime ? formatDateTimeHyphen(new Date(t.thoughtDateTime)) : ""}</TableCell>
+                    <TableCell>
+                      {t.thoughtDateTime
+                        ? formatDateTimeHyphen(new Date(t.thoughtDateTime))
+                        : ""}
+                    </TableCell>
                     <TableCell>{t.situation}</TableCell>
                     <TableCell>{t.feeling}</TableCell>
                     <TableCell>{t.percent}</TableCell>

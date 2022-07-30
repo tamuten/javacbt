@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Register } from './Register';
 import { ThoughtList } from './ThoughtList';

@@ -25,4 +25,7 @@ public class HomeController {
   public List<Cbt> index(){
     return this.cbtRepository.findAll();
   }
+
+  public String 
+
 }

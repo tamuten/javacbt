@@ -1,22 +1,24 @@
-import { Button, Grid, TextField, Typography } from "@material-ui/core";
-import { DatePicker } from "@material-ui/pickers";
+import { Button, Grid, TextField, Typography, Stack } from "@mui/material";
 
 export const Register = () => {
   return (
     <>
-      <Typography variant="h3" gutterBottom>Register</Typography>
-      <Grid container spacing={3}>
+      <Typography variant="h3" gutterBottom>
+        Register
+      </Typography>
+      <Grid container spacing={3} justifyContent="center">
         <Grid item xs={12}>
-          {/* <DatePicker value={new Date()} label="日時" disableFuture onChange={() => console.log("date changed.")} /> */}
+          <Stack spacing={3}>
+            <TextField multiline fullWidth label="状況" />
+            <TextField multiline fullWidth label="自動思考" />
+            <TextField multiline fullWidth label="根拠" />
+            <TextField multiline fullWidth label="反証" />
+            <TextField multiline fullWidth label="適応的思考" />
+            <TextField multiline fullWidth label="今の気分" />
+            <Button>登録</Button>
+          </Stack>
         </Grid>
-        <Grid item xs={12}>
-          <TextField multiline fullWidth label="自動思考" />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField multiline fullWidth label="根拠" />
-        </Grid>
-        <Button>登録</Button>
       </Grid>
     </>
   );
-}
+};

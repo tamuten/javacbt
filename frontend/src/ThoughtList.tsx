@@ -24,7 +24,6 @@ export const ThoughtList = () => {
 
     if (json) {
       const obj: Thought[] = JSON.parse(json);
-
       setThoughts(obj);
     }
   };

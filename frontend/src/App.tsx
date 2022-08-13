@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Link, Toolbar, Typography } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Register } from './Register';
 import { ThoughtList } from './ThoughtList';
@@ -11,6 +11,8 @@ export const App = () => {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6">Cbt App</Typography>
+            <Button variant="contained" color="primary" ></Button>
+            <Button>List</Button>
           </Toolbar>
 
         </AppBar>

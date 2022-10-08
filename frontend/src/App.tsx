@@ -1,34 +1,37 @@
-import { AppBar, Button, Container, Link, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Stack, Toolbar, Typography } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Register } from './Register';
 import { ThoughtList } from './ThoughtList';
 
 export const App = () => {
 
-  return (
-    <>
-      <BrowserRouter>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6">Cbt App</Typography>
-            <Button variant="contained" color="primary" ></Button>
-            <Button>List</Button>
-          </Toolbar>
+    return (
+        <>
+            <BrowserRouter>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Stack direction="row" spacing={3}>
+                            <Typography variant="h6">Cbt App</Typography>
+                            <Button href="/" color="inherit">List</Button>
+                            <Button href="/register" color="inherit">Register</Button>
+                        </Stack>
 
-        </AppBar>
-        <Container maxWidth="lg">
-          <div style={{ padding: 30 }}>
-            <Routes>
-              <Route path="/" element={<ThoughtList />}></Route>
-              <Route path="register" element={<Register />}></Route>
-            </Routes>
-          </div>
-        </Container>
+                    </Toolbar>
 
-      </BrowserRouter>
+                </AppBar>
+                <Container maxWidth="lg">
+                    <div style={{ padding: 30 }}>
+                        <Routes>
+                            <Route path="/" element={<ThoughtList />}></Route>
+                            <Route path="register" element={<Register />}></Route>
+                        </Routes>
+                    </div>
+                </Container>
 
-    </>
-  );
+            </BrowserRouter>
+
+        </>
+    );
 }
 
 export default App;

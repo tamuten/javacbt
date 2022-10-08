@@ -81,7 +81,7 @@ export const ThoughtList = () => {
           </TableContainer>
         </>
       ) : (
-        ""
+        <div>Loading ...</div>
       )}
     </>
   );

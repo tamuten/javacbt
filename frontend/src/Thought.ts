@@ -1,13 +1,13 @@
-export interface Thought {
+export class Thought {
   id?: number;
-  thoughtDateTime?: Date;
-  situation: string;
-  feeling: string;
-  percent?: number;
-  automaticThinking: string;
-  base: string;
-  objection: string;
-  newThinking: string;
-  newFeeling: string;
-  newPercent?: number;
+  thoughtDateTime: Date = new Date();
+  situation: string = "";
+  feeling: string = "";
+  percent: number = 0;
+  automaticThinking: string = "";
+  base: string = "";
+  objection: string = "";
+  newThinking: string = "";
+  newFeeling: string = "";
+  newPercent: number = 0;
 }

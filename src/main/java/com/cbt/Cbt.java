@@ -8,15 +8,30 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 public class Cbt {
-  private Integer id;
-  private LocalDateTime thoughtDateTime;
-  private String situation;
-  private String feeling;
-  private Integer percent;
-  private String automaticThinking;
-  private String base;
-  private String objection;
-  private String newThinking;
-  private String newFeeling;
-  private Integer newPercent;
+    private Integer id;
+    private LocalDateTime thoughtDateTime;
+    private String situation;
+    private String feeling;
+    private Integer percent;
+    private String automaticThinking;
+    private String base;
+    private String objection;
+    private String newThinking;
+    private String newFeeling;
+    private Integer newPercent;
+
+    @Override
+    public String toString() {
+        return "id: " + id
+                + ", thoughtDateTime:" + thoughtDateTime
+                + ", situation:" + situation
+                + ", feeling:" + feeling
+                + ", percent:" + percent
+                + ", automaticThinking:" + automaticThinking
+                + ", base:" + base
+                + ", objection:" + objection
+                + ", newThinking:" + newThinking
+                + ", newFeeling:" + newFeeling
+                + ", newPercent:" + newPercent;
+    }
 }

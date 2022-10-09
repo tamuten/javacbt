@@ -1,6 +1,6 @@
 export class Thought {
   id?: number;
-  thoughtDateTime: Date = new Date();
+  thoughtDateTime: Date | null = new Date();
   situation: string = "";
   feeling: string = "";
   percent: number = 0;

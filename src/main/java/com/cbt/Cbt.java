@@ -2,6 +2,8 @@ package com.cbt;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,6 +11,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class Cbt {
     private Integer id;
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime thoughtDateTime;
     private String situation;
     private String feeling;

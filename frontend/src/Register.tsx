@@ -10,6 +10,7 @@ import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { postDataWithJsonAsync } from "./Api";
 import { Thought } from "./Thought";
 
 export const Register = () => {
@@ -30,13 +31,7 @@ export const Register = () => {
     });
 
     const onSubmit: SubmitHandler<Thought> = async (data: Thought) => {
-        await fetch("api/create", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+        await postDataWithJsonAsync<Thought>("api/create", data);
         navigate("/");
     };
 

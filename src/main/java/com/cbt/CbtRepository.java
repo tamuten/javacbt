@@ -11,10 +11,21 @@ public class CbtRepository {
 
     private final CbtMapper mapper;
 
+    /**
+     * オブジェクトを構築する。
+     * 
+     * @param mapper Cbtマッパー
+     */
     public CbtRepository(CbtMapper mapper) {
         this.mapper = mapper;
     }
 
+    /**
+     * idをキーに、Cbtオブジェクトを取得する。
+     * 
+     * @param id ID
+     * @return Cbtオブジェクト
+     */
     public Cbt findById(Integer id) {
         return mapper.findById(id);
     }

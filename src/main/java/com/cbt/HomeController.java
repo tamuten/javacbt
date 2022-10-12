@@ -18,11 +18,6 @@ public class HomeController {
         this.cbtRepository = cbtRepository;
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
-    }
-
     @GetMapping("/index")
     public List<Cbt> index() {
         return this.cbtRepository.findAll();

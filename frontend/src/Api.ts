@@ -8,6 +8,20 @@ export const postDataWithJsonAsync = async <T>(path: string, data: T) => {
     });
 };
 
+export const getDataWithJsonAsync = async <T>(
+    path: string
+): Promise<T | null> => {
+    const json = await fetch(path).then(
+        (response) => response.text(),
+        (reason) => {
+            console.error(reason);
+        }
+    );
+
+    if (json) return JSON.parse(json);
+    return null;
+};
+
 const toJson = <T>(data: T) => {
     return JSON.stringify(data, function (key, value) {
         if (this[key] instanceof Date) {

@@ -31,4 +31,7 @@ VALUES
     #{newPercent}
 )
 </insert>
+    <select id="findById" parameterType="integer" resultType="Cbt">
+SELECT * FROM thought WHERE id = #{id}
+</select>
 </mapper>

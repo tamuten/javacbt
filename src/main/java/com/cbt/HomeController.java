@@ -3,6 +3,7 @@ package com.cbt;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +27,10 @@ public class HomeController {
     @PostMapping("/create")
     public void create(@RequestBody Cbt cbt) {
         this.cbtRepository.create(cbt);
+    }
+
+    @GetMapping("{id}")
+    public Cbt findById(@PathVariable int id) {
+        return this.cbtRepository.findById(id);
     }
 }

@@ -11,22 +11,27 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { useLayoutEffect } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { postDataWithJsonAsync } from "./Api";
+import { getDataWithJsonAsync, postDataWithJsonAsync } from "./Api";
 import { Thought } from "./Thought";
 
 export const Detail = () => {
     const navigate = useNavigate();
-    const id = useParams();
-    console.log(id);
-    const { control, handleSubmit, setValue, formState: { errors } } = useForm<Thought>();
+    const { id } = useParams();
+    const { control, handleSubmit, setValue, reset } = useForm<Thought>();
 
     const onSubmit: SubmitHandler<Thought> = async (data: Thought) => {
         await postDataWithJsonAsync("api/update", data);
         navigate("/");
     };
 
-    useLayoutEffect(() => {
+    const fetchData = async () => {
+        const data = await getDataWithJsonAsync<Thought>(`/api/${id}`);
+        if (data)
+            reset(data);
+    }
 
+    useLayoutEffect(() => {
+        fetchData();
     }, [])
 
     return (
@@ -89,7 +94,7 @@ export const Detail = () => {
                                     valueLabelDisplay="on"
                                 />
                             } />
-                            <Stack direction="row">
+                            <Stack direction="row" spacing={3}>
                                 <Button variant="contained" type="submit">
                                     更新
                                 </Button>

@@ -15,7 +15,7 @@ import { Thought } from "./Thought";
 
 export const Register = () => {
     const navigate = useNavigate();
-    const { control, handleSubmit, setValue, formState: { errors } } = useForm<Thought>({
+    const { control, handleSubmit, setValue } = useForm<Thought>({
         defaultValues: {
             thoughtDateTime: new Date(),
             situation: "状況",

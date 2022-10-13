@@ -1,12 +1,10 @@
 export const postDataWithJsonAsync = async <T>(path: string, data: T) => {
-    console.log(JSON.stringify(data));
-    console.log(toJson<T>(data));
     await fetch(path, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: toJson<T>(data),
+        body: toJson(data),
     });
 };
 

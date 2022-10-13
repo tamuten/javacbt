@@ -1,5 +1,6 @@
 import { AppBar, Button, Container, Stack, Toolbar, Typography } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Detail } from './Detail';
 import { Register } from './Register';
 import { ThoughtList } from './ThoughtList';
 
@@ -24,6 +25,7 @@ export const App = () => {
                         <Routes>
                             <Route path="/" element={<ThoughtList />}></Route>
                             <Route path="register" element={<Register />}></Route>
+                            <Route path="detail/:id" element={<Detail />}></Route>
                         </Routes>
                     </div>
                 </Container>

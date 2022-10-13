@@ -2,6 +2,7 @@ import { useState, useLayoutEffect } from "react";
 import { Thought } from "./Thought";
 import { formatDateTimeHyphen } from "./formatDateTimeHyphen";
 import {
+    Button,
     Table,
     TableBody,
     TableCell,
@@ -10,8 +11,10 @@ import {
     TableRow,
     Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const ThoughtList = () => {
+    const navigate = useNavigate();
     const [thoughts, setThoughts] = useState<Thought[]>();
 
     const getList = async () => {
@@ -54,6 +57,7 @@ export const ThoughtList = () => {
                                     <TableCell>適応的思考</TableCell>
                                     <TableCell>今の気分</TableCell>
                                     <TableCell></TableCell>
+                                    <TableCell></TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -74,6 +78,12 @@ export const ThoughtList = () => {
                                         <TableCell>{t.newThinking}</TableCell>
                                         <TableCell>{t.newFeeling}</TableCell>
                                         <TableCell>{t.newPercent}</TableCell>
+                                        <TableCell>
+                                            <Button variant="outlined"
+                                                onClick={() => navigate(`detail/${t.id}`)}>
+                                                編集
+                                            </Button>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

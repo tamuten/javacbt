@@ -34,4 +34,21 @@ VALUES
     <select id="findById" parameterType="integer" resultType="Cbt">
 SELECT * FROM thought WHERE id = #{id}
 </select>
+    <update id="update" parameterType="Cbt">
+UPDATE
+    thought
+SET
+    thought_datetime = #{thoughtDateTime},
+    situation = #{situation},
+    feeling = #{feeling},
+    percent = #{percent},
+    automatic_thinking = #{automaticThinking},
+    base = #{base},
+    objection = #{objection},
+    new_thinking = #{newThinking},
+    new_feeling = #{newFeeling},
+    new_percent = #{newPercent}
+WHERE
+    id = #{id}
+</update>
 </mapper>

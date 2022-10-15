@@ -5,10 +5,11 @@ import {
     Typography,
     Stack,
     Slider,
+    CircularProgress,
 } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDataWithJsonAsync, postDataWithJsonAsync } from "./Api";
@@ -18,21 +19,24 @@ export const Detail = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const { control, handleSubmit, setValue, reset } = useForm<Thought>();
+    const [loading, setLoading] = useState(true);
 
     const onSubmit: SubmitHandler<Thought> = async (data: Thought) => {
-        await postDataWithJsonAsync("api/update", data);
+        await postDataWithJsonAsync("/api/update", data);
         navigate("/");
     };
 
     const fetchData = async () => {
-        const data = await getDataWithJsonAsync<Thought>(`/api/${id}`);
-        if (data)
-            reset(data);
+        const thought = await getDataWithJsonAsync<Thought>(`/api/${id}`);
+        if (thought) reset(thought);
+        setLoading(false);
     }
 
     useLayoutEffect(() => {
         fetchData();
     }, [])
+
+    if (loading) return <CircularProgress />;
 
     return (
         <>

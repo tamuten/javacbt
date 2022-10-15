@@ -33,4 +33,9 @@ public class HomeController {
     public Cbt findById(@PathVariable int id) {
         return this.cbtRepository.findById(id);
     }
+
+    @PostMapping("/update")
+    public void update(@RequestBody Cbt cbt) {
+        this.cbtRepository.update(cbt);
+    }
 }

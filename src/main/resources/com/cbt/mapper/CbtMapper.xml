@@ -51,4 +51,11 @@ SET
 WHERE
     id = #{id}
 </update>
+    <delete id="delete" parameterType="integer">
+DELETE
+FROM
+    thought
+WHERE
+    id = #{id}
+</delete>
 </mapper>

@@ -2,6 +2,7 @@ package com.cbt;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,5 +38,10 @@ public class HomeController {
     @PostMapping("/update")
     public void update(@RequestBody Cbt cbt) {
         this.cbtRepository.update(cbt);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable int id) {
+        this.cbtRepository.delete(id);
     }
 }

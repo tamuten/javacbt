@@ -9,16 +9,16 @@ import {
 } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { getDataWithJsonAsync, postDataWithJsonAsync } from "./Api";
+import { deleteDataWithJsonAsync, getDataWithJsonAsync, postDataWithJsonAsync } from "./Api";
 import { Thought } from "./Thought";
 
 export const Detail = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-    const { control, handleSubmit, setValue, reset } = useForm<Thought>();
+    const { control, handleSubmit, setValue, reset, getValues } = useForm<Thought>();
     const [loading, setLoading] = useState(true);
 
     const onSubmit: SubmitHandler<Thought> = async (data: Thought) => {
@@ -26,15 +26,20 @@ export const Detail = () => {
         navigate("/");
     };
 
-    const fetchData = async () => {
+    const onClickDelete = async () => {
+        await deleteDataWithJsonAsync(`/api/${id}`, getValues("id"));
+        navigate("/");
+    }
+
+    const fetchData = useCallback(async () => {
         const thought = await getDataWithJsonAsync<Thought>(`/api/${id}`);
         if (thought) reset(thought);
         setLoading(false);
-    }
+    }, [id, reset]);
 
     useLayoutEffect(() => {
         fetchData();
-    }, [])
+    }, [fetchData])
 
     if (loading) return <CircularProgress />;
 
@@ -102,7 +107,7 @@ export const Detail = () => {
                                 <Button variant="contained" type="submit">
                                     更新
                                 </Button>
-                                <Button variant="contained" color="error">
+                                <Button variant="contained" color="error" onClick={onClickDelete}>
                                     削除
                                 </Button>
                             </Stack>

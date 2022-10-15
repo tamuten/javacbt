@@ -8,6 +8,16 @@ export const postDataWithJsonAsync = async <T>(path: string, data: T) => {
     });
 };
 
+export const deleteDataWithJsonAsync = async <T>(path: string, data: T) => {
+    await fetch(path, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: toJson(data),
+    });
+};
+
 export const getDataWithJsonAsync = async <T>(
     path: string
 ): Promise<T | null> => {

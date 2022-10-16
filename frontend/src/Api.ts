@@ -20,16 +20,17 @@ export const deleteDataWithJsonAsync = async <T>(path: string, data: T) => {
 
 export const getDataWithJsonAsync = async <T>(
     path: string
-): Promise<T | null> => {
-    const json = await fetch(path).then(
-        (response) => response.text(),
-        (reason) => {
-            console.error(reason);
+): Promise<T | undefined> => {
+    try {
+        const response = await fetch(path);
+        if (!response.ok) {
+            return undefined;
         }
-    );
-
-    if (json) return JSON.parse(json);
-    return null;
+        return JSON.parse(await response.text());
+    } catch (err) {
+        console.error("通信に失敗しました。", err);
+        return undefined;
+    }
 };
 
 const toJson = <T>(data: T) => {

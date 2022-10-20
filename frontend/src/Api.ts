@@ -36,7 +36,7 @@ export const getDataWithJsonAsync = async <T>(
 const toJson = <T>(data: T) => {
     return JSON.stringify(data, function (key, value) {
         if (this[key] instanceof Date) {
-            return new Date(this[key]).toLocaleString();
+            return this[key].toLocaleString();
         }
         return value;
     });

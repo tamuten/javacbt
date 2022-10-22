@@ -1,5 +1,7 @@
-import { AppBar, Button, Container, Drawer, IconButton, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import AddIcon from '@mui/icons-material/Add';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Detail } from './Detail';
@@ -24,7 +26,7 @@ export const App = () => {
             <BrowserRouter>
                 <AppBar position="static">
                     <Toolbar>
-                        <Stack direction="row" spacing={3}>
+                        <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
                             <IconButton
                                 color="inherit"
                                 aria-label="open drawer"
@@ -34,8 +36,6 @@ export const App = () => {
                                 <MenuIcon />
                             </IconButton>
                             <Typography variant="h6">Cbt App</Typography>
-                            <Button href="/" color="inherit">List</Button>
-                            <Button href="/register" color="inherit">Register</Button>
                         </Stack>
 
                     </Toolbar>
@@ -55,6 +55,24 @@ export const App = () => {
                     onClose={toggleOpen}
                 >
                     <Toolbar />
+                    <List>
+                        <ListItem disablePadding>
+                            <ListItemButton href="/">
+                                <ListItemIcon>
+                                    <AddIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="List" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton href="/register">
+                                <ListItemIcon>
+                                    <FormatListBulletedIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Register" />
+                            </ListItemButton>
+                        </ListItem>
+                    </List>
                 </Drawer>
                 <Container maxWidth="lg">
                     <div style={{ padding: 30 }}>

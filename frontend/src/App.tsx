@@ -11,20 +11,16 @@ import { ThoughtList } from './ThoughtList';
 const drawerWidth = 240;
 
 export const App = () => {
-    const [drowerOpen, setDrowerOpen] = useState(false);
+    const [drawerOpen, setDrowerOpen] = useState(false);
 
     const handleDrawerOpen = () => {
         setDrowerOpen(open => !open);
     }
 
-    const toggleOpen = () => {
-        setDrowerOpen(!drowerOpen);
-    }
-
     return (
         <>
             <BrowserRouter>
-                <AppBar position="static">
+                <AppBar position="fixed" sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
                     <Toolbar>
                         <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
                             <IconButton
@@ -50,16 +46,15 @@ export const App = () => {
                             boxSizing: 'border-box',
                         }
                     }}
-                    anchor="left"
-                    open={drowerOpen}
-                    onClose={toggleOpen}
+                    open={drawerOpen}
+                    onClose={handleDrawerOpen}
                 >
                     <Toolbar />
                     <List>
                         <ListItem disablePadding>
                             <ListItemButton href="/">
                                 <ListItemIcon>
-                                    <AddIcon />
+                                    <FormatListBulletedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="List" />
                             </ListItemButton>
@@ -67,7 +62,7 @@ export const App = () => {
                         <ListItem disablePadding>
                             <ListItemButton href="/register">
                                 <ListItemIcon>
-                                    <FormatListBulletedIcon />
+                                    <AddIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Register" />
                             </ListItemButton>
@@ -75,6 +70,7 @@ export const App = () => {
                     </List>
                 </Drawer>
                 <Container maxWidth="lg">
+                    <Toolbar />
                     <div style={{ padding: 30 }}>
                         <Routes>
                             <Route path="/" element={<ThoughtList />}></Route>

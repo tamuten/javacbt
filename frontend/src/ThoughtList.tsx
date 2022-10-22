@@ -12,22 +12,19 @@ import {
     Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { getDataWithJsonAsync } from "./Api";
 
 export const ThoughtList = () => {
     const navigate = useNavigate();
     const [thoughts, setThoughts] = useState<Thought[]>();
 
     const getList = async () => {
-        const json = await fetch("/api/index").then(
-            (response) => response.text(),
-            (reason) => {
-                console.error(reason);
-            }
-        );
+        const thoughtList = await getDataWithJsonAsync<Thought[]>("/api/index");
 
-        if (json) {
-            const obj: Thought[] = JSON.parse(json);
-            setThoughts(obj);
+        if (thoughtList) {
+            setThoughts(thoughtList);
+        } else {
+
         }
     };
 
@@ -66,7 +63,7 @@ export const ThoughtList = () => {
                                         <TableCell>{t.id}</TableCell>
                                         <TableCell>
                                             {t.thoughtDateTime
-                                                ? formatDateTimeHyphen(new Date(t.thoughtDateTime))
+                                                ? formatDateTimeHyphen(t.thoughtDateTime)
                                                 : ""}
                                         </TableCell>
                                         <TableCell>{t.situation}</TableCell>

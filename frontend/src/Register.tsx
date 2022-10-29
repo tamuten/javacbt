@@ -1,14 +1,15 @@
 import {
     Button,
-    Grid,
     Typography,
     Stack,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { postDataWithJsonAsync } from "./Api";
+import { SnackbarContext } from "./SnackbarContext";
 import { Thought } from "./Thought";
 import { ThoughtForm } from "./ThoughtForm";
 
@@ -28,9 +29,17 @@ export const Register = () => {
             newPercent: 50
         }
     });
+    const { setAppSnackbar } = useContext(SnackbarContext);
 
     const onSubmit: SubmitHandler<Thought> = async (data: Thought) => {
         await postDataWithJsonAsync("api/create", data);
+
+        setAppSnackbar({
+            isOpen: true,
+            message: "登録が完了しました。",
+            autoHideDuration: 5000,
+            severity: "success"
+        });
         navigate("/");
     };
 
@@ -39,18 +48,14 @@ export const Register = () => {
             <Typography variant="h3" gutterBottom>
                 Register
             </Typography>
-            <Grid container spacing={3} justifyContent="center">
-                <Grid item xs={12}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <Stack component="form" onSubmit={handleSubmit(onSubmit)} noValidate spacing={3}>
-                            <ThoughtForm control={control} setValue={setValue} />
-                            <Button variant="contained" type="submit" size="large">
-                                登録
-                            </Button>
-                        </Stack>
-                    </LocalizationProvider>
-                </Grid>
-            </Grid>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Stack component="form" onSubmit={handleSubmit(onSubmit)} noValidate spacing={3}>
+                    <ThoughtForm control={control} setValue={setValue} />
+                    <Button variant="contained" type="submit" size="large">
+                        登録
+                    </Button>
+                </Stack>
+            </LocalizationProvider>
         </>
     );
 };

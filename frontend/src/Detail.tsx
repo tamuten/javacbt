@@ -1,6 +1,5 @@
 import {
     Button,
-    Grid,
     Typography,
     Stack,
     CircularProgress,
@@ -62,24 +61,20 @@ export const Detail = () => {
             <Typography variant="h3" gutterBottom>
                 Detail
             </Typography>
-            <Grid container spacing={3} justifyContent="center">
-                <Grid item xs={12}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <Stack component="form" onSubmit={handleSubmit(onSubmit)} noValidate spacing={3}>
-                            <ThoughtForm control={control} setValue={setValue} />
-                            <Stack direction="row" spacing={3}>
-                                <Button variant="contained" color="error" onClick={onClickDelete}>
-                                    削除
-                                </Button>
-                                <Spacer />
-                                <Button variant="contained" type="submit">
-                                    更新
-                                </Button>
-                            </Stack>
-                        </Stack>
-                    </LocalizationProvider>
-                </Grid>
-            </Grid>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Stack component="form" onSubmit={handleSubmit(onSubmit)} noValidate spacing={3}>
+                    <ThoughtForm control={control} setValue={setValue} />
+                    <Stack direction="row" spacing={3}>
+                        <Button variant="contained" color="error" onClick={onClickDelete}>
+                            削除
+                        </Button>
+                        <Spacer />
+                        <Button variant="contained" type="submit">
+                            更新
+                        </Button>
+                    </Stack>
+                </Stack>
+            </LocalizationProvider>
             <ErrorDialog open={dialogOpen} text={errorText} handleClose={handleClose} />
         </>
     );

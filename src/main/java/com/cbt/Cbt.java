@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class Cbt {
     private Integer id;
-    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm")
     private LocalDateTime thoughtDateTime;
     private String situation;
     private String feeling;

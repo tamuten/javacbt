@@ -32,15 +32,25 @@ export const Register = () => {
     const { setAppSnackbar } = useContext(SnackbarContext);
 
     const onSubmit: SubmitHandler<Thought> = async (data: Thought) => {
-        await postDataWithJsonAsync("api/create", data);
+        const error = await postDataWithJsonAsync("api/create", data);
 
-        setAppSnackbar({
-            isOpen: true,
-            message: "登録が完了しました。",
-            autoHideDuration: 5000,
-            severity: "success"
-        });
-        navigate("/");
+        if (!error) {
+            setAppSnackbar({
+                isOpen: true,
+                message: "登録が完了しました。",
+                autoHideDuration: 5000,
+                severity: "success"
+            });
+            navigate("/");
+        } else {
+            setAppSnackbar({
+                isOpen: true,
+                message: `登録に失敗しました。 ${error}`,
+                autoHideDuration: 5000,
+                severity: "error"
+            });
+        }
+
     };
 
     return (

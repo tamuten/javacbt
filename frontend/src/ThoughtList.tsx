@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect } from "react";
 import { Thought } from "./Thought";
-import { formatDateTimeHyphen } from "./formatDateTimeHyphen";
+import { formatDateTime } from "./formatDateTime";
 import {
     Button,
     Table,
@@ -63,7 +63,7 @@ export const ThoughtList = () => {
                                         <TableCell>{t.id}</TableCell>
                                         <TableCell>
                                             {t.thoughtDateTime
-                                                ? formatDateTimeHyphen(t.thoughtDateTime)
+                                                ? formatDateTime(t.thoughtDateTime, "-")
                                                 : ""}
                                         </TableCell>
                                         <TableCell>{t.situation}</TableCell>
